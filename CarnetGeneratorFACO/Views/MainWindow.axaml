@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CarnetGeneratorFACO.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CarnetGeneratorFACO.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CarnetGeneratorFACO"
+        xmlns:shadui="clr-namespace:ShadUI;assembly=ShadUI">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <DockPanel>
+        <Border BorderBrush="WhiteSmoke" BorderThickness="0 0 2 0" Margin="0 8 0 8" Padding="0 10" >
+            <StackPanel DockPanel.Dock="Left" Width="180" Spacing="10">
+                <TextBlock
+                    Text="Jesus Lozano"/>
+                <Button
+                    Content="Vaciar lista"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Margin="10">
+            <Label Content="Nombre: "/>
+            <TextBox/>
+            <Label Content="Cedula: "/>
+            <TextBox/>
+            <Label Content="N.H.: "/>
+            <TextBox/>
+            <Label Content="Fecha de vencimiento: "/>
+            <shadui:DateInput/>
+            <Label Content="Numero de Ubicacion: "/>
+            <TextBox/>
+            <Label Content="Nombre de ubicacion: "/>
+            <TextBox/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50" Margin="20">
+                <Button Content="Aceptar"/>
+                <Button Content="Imprimir"/>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+
+</Window>
