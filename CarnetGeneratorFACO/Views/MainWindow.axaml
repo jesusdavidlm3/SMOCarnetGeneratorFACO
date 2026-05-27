@@ -1,13 +1,13 @@
-<Window xmlns="https://github.com/avaloniaui"
+<shadui:Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CarnetGeneratorFACO.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="600" Width="1100" Height="600" CanResize="False"
         x:Class="CarnetGeneratorFACO.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CarnetGeneratorFACO"
+        Title="Generador de carnets SMO"
         xmlns:shadui="clr-namespace:ShadUI;assembly=ShadUI">
 
     <Design.DataContext>
@@ -18,14 +18,32 @@
 
     <DockPanel>
         <Border BorderBrush="WhiteSmoke" BorderThickness="0 0 2 0" Margin="0 8 0 8" Padding="0 10" >
-            <StackPanel DockPanel.Dock="Left" Width="180" Spacing="10">
+            <StackPanel DockPanel.Dock="Left" Width="200" Spacing="10">
+                <TextBlock
+                    Text="Carnets a imprimir"
+                    TextAlignment="Center"
+                    FontSize="20"/>
                 <TextBlock
                     Text="Jesus Lozano"/>
+                <TextBlock
+                    Text="C.I.: 28.288.269"/>
+                <TextBlock
+                    Text="N.H. #029947"/>
+                <TextBlock
+                    Text="Facultad de Odontologia"/>
+                <TextBlock
+                    Text="Empleado"/>
                 <Button
-                    Content="Vaciar lista"/>
+                    Classes="Primary"
+                    Content="Vaciar lista"
+                    Width="120"/>
             </StackPanel>
         </Border>
         <StackPanel Margin="10">
+            <TextBlock
+                Text="Generador de carnets" 
+                HorizontalAlignment="Center"
+                FontSize="30"/>
             <Label Content="Nombre: "/>
             <TextBox/>
             <Label Content="Cedula: "/>
@@ -39,10 +57,14 @@
             <Label Content="Nombre de ubicacion: "/>
             <TextBox/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50" Margin="20">
-                <Button Content="Aceptar"/>
-                <Button Content="Imprimir"/>
+                <Button 
+                    Content="Aceptar"
+                    Classes="Primary"/>
+                <Button 
+                    Content="Imprimir"
+                    Classes="Secondary"/>
             </StackPanel>
         </StackPanel>
     </DockPanel>
 
-</Window>
+</shadui:Window>
