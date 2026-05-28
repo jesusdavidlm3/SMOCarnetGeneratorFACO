@@ -20,8 +20,34 @@ public partial class MainWindowViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-    public string NameInput { get; set; }
-    public int IdInput { get; set; }
+
+    public string NameInput
+    {
+        get => _NameInput;
+        set
+        {
+            if (_NameInput != value)
+            {
+                _NameInput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    private string _NameInput { get; set; }
+
+    public int IdInput
+    {
+        get => _NhInput;
+        set
+        {
+            if (_NhInput != value)
+            {
+                _NhInput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    private  int _NhInput { get; set; }
     public int NhInput { get; set; }
     public DateTimeOffset ExpDateInput { get; set; } = DateTimeOffset.Now;
     public int LocationNumberInput { get; set; }
@@ -71,11 +97,15 @@ public partial class MainWindowViewModel : ViewModelBase
     ];
 
     public RelayCommand Addcarnet { get; }
+    public RelayCommand ClearCarnets { get; }
     
     public MainWindowViewModel()
     {
         Addcarnet = new RelayCommand(
             execute: _ => _AddCarnet()
+        );
+        ClearCarnets = new RelayCommand(
+            execute: _ => _ClearCarnets()
         );
     }
     
@@ -83,5 +113,13 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var newCarnet = new Carnet(IdInput, NameInput, NhInput, ExpDateInput, SelectedLocationName, LocationNumberInput, Condition);
         CarnetsReady.Add(newCarnet);
+        NameInput = "";
+        IdInput = 0;
+        NhInput = 0;
+    }
+    
+    private void _ClearCarnets()
+    {
+        CarnetsReady.Clear();
     }
 }

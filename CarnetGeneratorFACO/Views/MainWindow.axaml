@@ -23,30 +23,36 @@
                     Text="Carnets a imprimir"
                     TextAlignment="Center"
                     FontSize="20"/>
-                <ListBox
-                    ItemsSource="{Binding CarnetsReady}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock
-                                    Text="{Binding Name}"/>
-                                <TextBlock
-                                    Text="{Binding Id}"/>
-                                <TextBlock
-                                    Text="{Binding Nh}"/>
-                                <TextBlock
-                                    Text="{Binding LocationName}"/>
-                                <TextBlock
-                                    Text="{Binding ExpDate}"/>
+                <ScrollViewer Height="460" HorizontalScrollBarVisibility="Disabled">
+                    <ListBox
+                        Margin="10"
+                        ItemsSource="{Binding CarnetsReady}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock
+                                        Text="{Binding Name}"/>
+                                    <TextBlock
+                                        Text="{Binding Id}"/>
+                                    <TextBlock
+                                        Text="{Binding Nh}"/>
+                                    <TextBlock
+                                        Text="{Binding LocationName}"/>
+                                    <TextBlock
+                                        Text="{Binding Condition}"/>
+                                    <TextBlock
+                                        Text="{Binding ExpDate}"/>
                                 
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
                 <Button
                     Classes="Primary"
                     Content="Vaciar lista"
-                    Width="120"/>
+                    Width="120"
+                    Command="{Binding ClearCarnets}"/>
             </StackPanel>
         </Border>
         <StackPanel Margin="10">
@@ -55,10 +61,10 @@
                 HorizontalAlignment="Center"
                 FontSize="30"/>
             <Label Content="Nombre: "/>
-            <TextBox Text="{Binding NameInput}"/>
+            <TextBox Text="{Binding NameInput, Mode=TwoWay}"/>
             <Label Content="Cedula: "/>
             <TextBox
-                Text="{Binding IdInput}"/>
+                Text="{Binding IdInput, Mode=TwoWay}"/>
             <Label Content="N.H.: "/>
             <TextBox  Text="{Binding NhInput}"/>
             <Label Content="Fecha de vencimiento: "/>
