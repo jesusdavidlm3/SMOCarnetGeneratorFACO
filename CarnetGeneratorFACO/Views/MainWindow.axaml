@@ -3,7 +3,7 @@
         xmlns:vm="using:CarnetGeneratorFACO.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="650" Width="1100" Height="650" CanResize="False"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620" Width="1100" Height="620" CanResize="False"
         x:Class="CarnetGeneratorFACO.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -18,7 +18,7 @@
 
     <DockPanel>
         <Border BorderBrush="WhiteSmoke" BorderThickness="0 0 2 0" Margin="0 8 0 8" Padding="0 10" >
-            <StackPanel DockPanel.Dock="Left" Width="210" Spacing="10">
+            <StackPanel DockPanel.Dock="Left" Width="230" Spacing="10">
                 <TextBlock
                     Text="Carnets a imprimir"
                     TextAlignment="Center"
@@ -62,7 +62,9 @@
             <Label Content="N.H.: "/>
             <TextBox  Text="{Binding NhInput}"/>
             <Label Content="Fecha de vencimiento: "/>
-            <shadui:DateInput Value="{Binding ExpDateInput}"/>
+            <!-- <shadui:DateInput Value="{Binding ExpDateInput}"/> -->
+            <CalendarDatePicker
+                Text="{Binding ExpDateInput}"/>
             <Label Content="Numero de Ubicacion: "/>
             <TextBox Text="{Binding LocationNumberInput}"/>
             <Label Content="Nombre de ubicacion: "/>
@@ -86,6 +88,10 @@
                     Content="Imprimir"
                     Classes="Secondary"/>
             </StackPanel>
+            <TextBlock
+                TextAlignment="Center"
+                FontSize="12"
+                Text="Desarrollado por la unidad de sistemas de la Facultad de Odontologia de la Universidad del Zulia"/>
         </StackPanel>
     </DockPanel>
 

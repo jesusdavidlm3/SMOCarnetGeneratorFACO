@@ -8,8 +8,7 @@ namespace CarnetGeneratorFACO.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    public ObservableCollection<Carnet> CarnetsReady { get; private set; } =
-        [new(1, "Jesus David Lozano Marin", 2, new DateTime(2002, 02, 24), "Facultad de odontologia", 5, "Empleado")];
+    public ObservableCollection<Carnet> CarnetsReady { get; private set; } = [];
     private string PicPath { get; set; }
     private string _PicStatus { get; set; } = "Seleccionar foto";
     public string PicStatus
@@ -24,7 +23,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public string NameInput { get; set; }
     public int IdInput { get; set; }
     public int NhInput { get; set; }
-    public DateTime ExpDateInput { get; set; }
+    public DateTimeOffset ExpDateInput { get; set; } = DateTimeOffset.Now;
     public int LocationNumberInput { get; set; }
     
     private string _SelectedLocationName { get; set; } = "Facultad de odontologia";
