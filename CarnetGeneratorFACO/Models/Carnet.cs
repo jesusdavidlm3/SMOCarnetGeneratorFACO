@@ -11,8 +11,9 @@ public class Carnet
     public DateTime ExpDate { get; set; }
     public string LocationName { get; set; }
     public int LocationNumber { get; set; }
+    public string Condition { get; set; } 
     
-    public Carnet(int id, string name, int nh, DateTime expDate, string locationName, int locationNumber)
+    public Carnet(int id, string name, int nh, DateTime expDate, string locationName, int locationNumber, string condition)
     {
         Id = id;
         Name = name;
@@ -20,5 +21,6 @@ public class Carnet
         ExpDate = expDate;
         LocationName = locationName;
         LocationNumber = locationNumber;
+        Condition = condition;
     }
 }
