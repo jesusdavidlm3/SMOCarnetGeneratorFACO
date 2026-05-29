@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CarnetGeneratorFACO.Classes;
+using CarnetGeneratorFACO.Functions.PDF;
 using CarnetGeneratorFACO.Models;
+using QuestPDF.Fluent;
 
 namespace CarnetGeneratorFACO.ViewModels;
 
@@ -33,6 +35,7 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         }
     }
+
     private string _NameInput { get; set; }
 
     public int IdInput
@@ -98,14 +101,20 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public RelayCommand Addcarnet { get; }
     public RelayCommand ClearCarnets { get; }
+    public RelayCommand IssueCards { get; }
     
     public MainWindowViewModel()
     {
         Addcarnet = new RelayCommand(
-            execute: _ => _AddCarnet()
+            execute: _ => _AddCarnet(),
+            canExecute: _ => ((CarnetsReady.Count < 6))
         );
         ClearCarnets = new RelayCommand(
             execute: _ => _ClearCarnets()
+        );
+
+        IssueCards = new RelayCommand(
+            execute: _ => _IssueCards()
         );
     }
     
@@ -121,5 +130,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private void _ClearCarnets()
     {
         CarnetsReady.Clear();
+    }
+
+    private void _IssueCards()
+    {
+        var document = new IssueCards(CarnetsReady);
+        document.GeneratePdfAndShow();
     }
 }

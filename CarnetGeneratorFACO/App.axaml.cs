@@ -6,6 +6,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using CarnetGeneratorFACO.ViewModels;
 using CarnetGeneratorFACO.Views;
+using QuestPDF.Infrastructure;
 
 namespace CarnetGeneratorFACO;
 
@@ -13,6 +14,7 @@ public partial class App : Application
 {
     public override void Initialize()
     {
+        QuestPDF.Settings.License = LicenseType.Community;
         AvaloniaXamlLoader.Load(this);
     }
 

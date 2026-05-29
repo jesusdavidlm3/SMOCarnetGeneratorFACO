@@ -21,6 +21,18 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1"/>
+        <PackageReference Include="QuestPDF" Version="2026.5.0" />
         <PackageReference Include="ShadUI" Version="0.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Assets\smologo.png" />
+        <Content Include="Assets\smologo.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="Assets\luzlogo.png" />
+        <Content Include="Assets\luzlogo.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 </Project>

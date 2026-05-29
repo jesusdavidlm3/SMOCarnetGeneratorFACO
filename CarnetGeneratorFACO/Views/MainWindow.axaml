@@ -92,7 +92,8 @@
                     Command="{Binding Addcarnet}"/>
                 <Button 
                     Content="Imprimir"
-                    Classes="Secondary"/>
+                    Classes="Secondary"
+                    Command="{Binding IssueCards}"/>
             </StackPanel>
             <TextBlock
                 TextAlignment="Center"
