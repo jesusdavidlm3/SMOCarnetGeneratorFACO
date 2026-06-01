@@ -8,11 +8,11 @@ namespace CarnetGeneratorFACO.Functions.PDF;
 
 public class IssueCards : IDocument
 {
-    private ObservableCollection<Carnet> Carnets;
+    private ObservableCollection<Carnet> _carnets;
     
     public IssueCards(ObservableCollection<Carnet>  carnets)
     {
-        Carnets = carnets;
+        _carnets = carnets;
     }
     
     public void Compose(IDocumentContainer container)
@@ -28,70 +28,66 @@ public class IssueCards : IDocument
     {
         container.Column(page =>
         {
-            int CarRowsCount;
-            if (Carnets.Count % 2 == 0)
-            {
-                CarRowsCount =  Carnets.Count / 2;
-            }
-            else
-            {
-                CarRowsCount = (Carnets.Count + 1) / 2;
-            }
-
-            for (int i = 0; i < CarRowsCount; i++)
+            page.Spacing(0.5f, Unit.Centimetre);
+            for (int i = 0; i < _carnets.Count; i++)
             {
                 page.Item().Row(carRow =>
                 {
-                    carRow.ConstantItem(8.5f, Unit.Centimetre).Border(1, Colors.Black).Column(carnet =>
+                    carRow.Spacing(0.5f, Unit.Centimetre);
+                    BuildCarnet(_carnets[i], carRow);
+                    if (_carnets.Count >= i+2)
                     {
-                        carnet.Item().Row(carnetR =>
-                        {
-                            carnetR.ConstantItem(7.7f, Unit.Centimetre).Column(info =>
-                            {
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/luzlogo.png");
-                                    internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/smologo.png");
-                                });
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.RelativeItem().Text($"{Carnets[0].Name}").FontSize(10);
-                                });
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.RelativeItem().Text($"C.I. {Carnets[0].Id}").FontSize(10);
-                                });
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.RelativeItem().Text($"N.H. # {Carnets[0].Nh}   Vencimiento: {Carnets[0].ExpDate.Day}/{Carnets[0].ExpDate.Month}/{Carnets[0].ExpDate.Year}").FontSize(10);
-                                });
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.RelativeItem().Text($"Ubicacion {Carnets[0].LocationNumber}").FontSize(10);
-                                });
-                                info.Item().Row(internalRow =>
-                                {
-                                    internalRow.RelativeItem().Text($"{Carnets[0].LocationName}").FontSize(10);
-                                });
-                            });
-                            carnetR.ConstantItem(0.8f, Unit.Centimetre).Column(c =>
-                            {
-                                c.Item().Image("Assets/cintillo.png");
-                            });
-                        });
-                    });
+                        BuildCarnet(_carnets[i+1], carRow);
+                        i++;
+                    }
                 });
             }
-            
-
         });
-        // for (int i = 0; i < Carnets.Count; i++)
-        // {
-        // }
     }
 
-    // private void BuildCarnet(Carnet carnet)
-    // {
-    //     
-    // }
+    private void BuildCarnet(Carnet currenCarnet, RowDescriptor carRow)
+    {
+        carRow.ConstantItem(8.5f, Unit.Centimetre).Border(1, Colors.Black).Column(carnet =>
+        {
+            carnet.Item().Row(carnetR =>
+            {
+                carnetR.ConstantItem(7.7f, Unit.Centimetre).Column(info =>
+                {
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/luzlogo.png");
+                        internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/smologo.png");
+                    });
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.RelativeItem().Text($"{currenCarnet.Name}").FontSize(10);
+                    });
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.RelativeItem().Text($"C.I. {currenCarnet.Id}").FontSize(10);
+                    });
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.RelativeItem()
+                            .Text(
+                                $"N.H. # {currenCarnet.Nh}   Vencimiento: {currenCarnet.ExpDate.Day}/{currenCarnet.ExpDate.Month}/{currenCarnet.ExpDate.Year}")
+                            .FontSize(10);
+                    });
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.RelativeItem().Text($"Ubicacion {currenCarnet.LocationNumber}")
+                            .FontSize(10);
+                    });
+                    info.Item().Row(internalRow =>
+                    {
+                        internalRow.RelativeItem().Text($"{currenCarnet.LocationName}").FontSize(10);
+                    });
+                });
+                carnetR.ConstantItem(0.8f, Unit.Centimetre).Column(c =>
+                {
+                    c.Item().Image("Assets/cintillo.png");
+                });
+            });
+        });
+    }
 }
