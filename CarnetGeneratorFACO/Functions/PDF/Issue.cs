@@ -55,32 +55,33 @@ public class IssueCards : IDocument
                 {
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/luzlogo.png");
-                        internalRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/smologo.png");
+                        internalRow.Spacing(1.5f, Unit.Centimetre);
+                        internalRow.ConstantItem(3f, Unit.Centimetre).PaddingLeft(0.1f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image("Assets/luzlogo.png");
+                        internalRow.ConstantItem(3f, Unit.Centimetre).PaddingLeft(1f, Unit.Centimetre).PaddingTop(0.5f, Unit.Centimetre).Image("Assets/smologo.png");
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().Text($"{currenCarnet.Name}").FontSize(10);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Name}").FontSize(10);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().Text($"C.I. {currenCarnet.Id}").FontSize(10);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"C.I. {currenCarnet.Id}").FontSize(10);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem()
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre)
                             .Text(
-                                $"N.H. # {currenCarnet.Nh}   Vencimiento: {currenCarnet.ExpDate.Day}/{currenCarnet.ExpDate.Month}/{currenCarnet.ExpDate.Year}")
+                                $"N.H. #{currenCarnet.Nh}      Vencimiento: {currenCarnet.ExpDate.Day}/{currenCarnet.ExpDate.Month}/{currenCarnet.ExpDate.Year}")
                             .FontSize(10);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().Text($"Ubicacion {currenCarnet.LocationNumber}")
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"Ubicacion {currenCarnet.LocationNumber}")
                             .FontSize(10);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().Text($"{currenCarnet.LocationName}").FontSize(10);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(10);
                     });
                 });
                 carnetR.ConstantItem(0.8f, Unit.Centimetre).Column(c =>
