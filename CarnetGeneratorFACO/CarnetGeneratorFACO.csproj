@@ -34,5 +34,9 @@
         <Content Include="Assets\luzlogo.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <None Remove="Assets\cintillo.png" />
+        <Content Include="Assets\cintillo.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 </Project>

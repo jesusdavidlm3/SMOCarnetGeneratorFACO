@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620" Width="1100" Height="620" CanResize="False"
         x:Class="CarnetGeneratorFACO.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/icon.ico"
         Title="Generador de carnets SMO"
         xmlns:shadui="clr-namespace:ShadUI;assembly=ShadUI">
 

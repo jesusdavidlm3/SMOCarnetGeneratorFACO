@@ -26,19 +26,30 @@ public class IssueCards : IDocument
 
     void ComposeBody(IContainer container)
     {
-        container.Row(row =>
+        container.Row(p =>
         {
-            row.RelativeItem().Column(car =>
+            
+            p.RelativeItem().Column(s =>
             {
-                car.Item().Row(carRow =>
+                s.Item().Row(row =>
                 {
-                    carRow.ConstantItem(50).Image("Assets/luzlogo.png");
-                    carRow.ConstantItem(50).Image("Assets/smologo.png");
+                    row.ConstantItem(7.7f, Unit.Centimetre).Column(car =>
+                    {
+                        car.Item().Row(carRow =>
+                        {
+                            carRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/luzlogo.png");
+                            carRow.ConstantItem(3f, Unit.Centimetre).Image("Assets/smologo.png");
+                        });
+                        car.Item().Row(carRow =>
+                        {
+                            carRow.RelativeItem().Text(Carnets[0].Name);         
+                        });
+                    });
                 });
-                car.Item().Row(carRow =>
-                {
-                    carRow.RelativeItem().Text(Carnets[0].Name);         
-                });
+            });
+            p.ConstantItem(0.8f, Unit.Centimetre).Column(c =>
+            {
+                c.Item().Image("Assets/cintillo.png");
             });
         });
     }
