@@ -71,11 +71,17 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
     public ObservableCollection<string> LocationNames { get; } = [
-        "Facultad de odontologia",
-        "Facultad de medicina",
-        "Facultad de agronomia",
-        "Facultad de veterinaria",
-        "Facultad de humanidades y educacion"
+        "Facultad de Odontologia",
+        "Facultad de Medicina",
+        "Facultad de Agronomia",
+        "Facultad de Ciencias Veterinarias",
+        "Facultad de Humanidades y Educacion",
+        "Facultad de Ciencias Juridicas y Politicas",
+        "Facultad de Ingenieria",
+        "Facultad de Ciencias Economicas y Sociales",
+        "Facultad de Arquitectura de Diseño",
+        "Facultad Experimental de Ciencias",
+        "Facultad Experimental de Arte"
     ];
 
     private string _Condition { get; set; } = "Familiar";
