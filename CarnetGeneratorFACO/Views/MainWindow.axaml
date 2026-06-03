@@ -17,45 +17,7 @@
     </Design.DataContext>
 
     <DockPanel>
-        <Border BorderBrush="WhiteSmoke" BorderThickness="0 0 2 0" Margin="0 8 0 8" Padding="0 10" >
-            <StackPanel DockPanel.Dock="Left" Width="230" Spacing="10">
-                <TextBlock
-                    Text="Carnets a imprimir"
-                    TextAlignment="Center"
-                    FontSize="20"/>
-                <ScrollViewer Height="460" HorizontalScrollBarVisibility="Disabled">
-                    <ListBox
-                        Margin="10"
-                        ItemsSource="{Binding CarnetsReady}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock
-                                        Text="{Binding Name}"/>
-                                    <TextBlock
-                                        Text="{Binding Id}"/>
-                                    <TextBlock
-                                        Text="{Binding Nh}"/>
-                                    <TextBlock
-                                        Text="{Binding LocationName}"/>
-                                    <TextBlock
-                                        Text="{Binding Condition}"/>
-                                    <TextBlock
-                                        Text="{Binding ExpDate}"/>
-                                
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-                <Button
-                    Classes="Primary"
-                    Content="Vaciar lista"
-                    Width="120"
-                    Command="{Binding ClearCarnets}"/>
-            </StackPanel>
-        </Border>
-        <StackPanel Margin="10">
+        <StackPanel Margin="10" DockPanel.Dock="Left" Width="600">
             <TextBlock
                 Text="Generador de carnets" 
                 HorizontalAlignment="Center"
@@ -101,6 +63,45 @@
                 FontSize="12"
                 Text="Desarrollado por la unidad de sistemas de la Facultad de Odontologia de la Universidad del Zulia"/>
         </StackPanel>
+        <Border BorderBrush="WhiteSmoke" BorderThickness="2 0 0 0" Margin="0 8 0 8" Padding="0 10" >
+            <StackPanel Width="400" Spacing="10">
+                <TextBlock
+                    Text="Carnets a imprimir"
+                    TextAlignment="Center"
+                    FontSize="20"/>
+                <ScrollViewer Height="510" HorizontalScrollBarVisibility="Disabled">
+                    <ListBox
+                        Margin="10"
+                        ItemsSource="{Binding CarnetsReady}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0 0 0 2" BorderBrush="White" Padding="0 0 0 15">
+                                    <StackPanel>
+                                        <TextBlock
+                                            Text="{Binding Name}"/>
+                                        <TextBlock
+                                            Text="{Binding Id}"/>
+                                        <TextBlock
+                                            Text="{Binding Nh}"/>
+                                        <TextBlock
+                                            Text="{Binding LocationName}"/>
+                                        <TextBlock
+                                            Text="{Binding Condition}"/>
+                                        <TextBlock
+                                            Text="{Binding ExpDate}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+                <Button
+                    Classes="Primary"
+                    Content="Vaciar lista"
+                    Width="120"
+                    Command="{Binding ClearCarnets}"/>
+            </StackPanel>
+        </Border>
     </DockPanel>
 
 </shadui:Window>

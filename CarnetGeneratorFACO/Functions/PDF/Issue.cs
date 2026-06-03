@@ -78,7 +78,7 @@ public class IssueCards : IDocument
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"Ubicacion {currenCarnet.LocationNumber}")
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"Ubicacion: {currenCarnet.LocationNumber}")
                             .FontSize(9);
                     });
                     info.Item().Row(internalRow =>
