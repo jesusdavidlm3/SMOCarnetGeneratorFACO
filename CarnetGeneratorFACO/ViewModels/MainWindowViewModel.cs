@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using CarnetGeneratorFACO.Classes;
 using CarnetGeneratorFACO.Functions.PDF;
 using CarnetGeneratorFACO.Models;
+using CarnetGeneratorFACO.Services;
 using QuestPDF.Fluent;
 
 namespace CarnetGeneratorFACO.ViewModels;
@@ -108,6 +111,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public RelayCommand Addcarnet { get; }
     public RelayCommand ClearCarnets { get; }
     public RelayCommand IssueCards { get; }
+    public RelayCommand SelectPic { get; }
     
     public MainWindowViewModel()
     {
@@ -122,15 +126,21 @@ public partial class MainWindowViewModel : ViewModelBase
         IssueCards = new RelayCommand(
             execute: _ => _IssueCards()
         );
+        SelectPic = new RelayCommand(
+            execute: _ => _SelectPic()
+        );
     }
     
     private void _AddCarnet()
     {
-        var newCarnet = new Carnet(IdInput, NameInput, NhInput, ExpDateInput, SelectedLocationName, LocationNumberInput, Condition);
+        var newCarnet = new Carnet(IdInput, NameInput, NhInput, ExpDateInput, SelectedLocationName, LocationNumberInput, Condition, PicPath);
         CarnetsReady.Add(newCarnet);
+        IdInput = 0;
         NameInput = "";
         IdInput = 0;
         NhInput = 0;
+        PicPath = "";
+        PicStatus = "Seleccionar foto";
     }
     
     private void _ClearCarnets()
@@ -142,5 +152,15 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         var document = new IssueCards(CarnetsReady);
         document.GeneratePdfAndShow();
+    }
+
+    private async Task _SelectPic()
+    {
+        var result = await FileDialogService.ShowSelectFileDialog();
+        if (result.Count > 0)
+        {
+            PicStatus = "Imagen Seleccionada";
+            PicPath = result[0].TryGetLocalPath();   
+        }
     }
 }

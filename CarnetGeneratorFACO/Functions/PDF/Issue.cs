@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Reflection;
 using CarnetGeneratorFACO.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
@@ -61,27 +63,28 @@ public class IssueCards : IDocument
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Name}").FontSize(10);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Name}").FontSize(9);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"C.I. {currenCarnet.Id}").FontSize(10);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"C.I. {currenCarnet.Id}").FontSize(9);
                     });
                     info.Item().Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre)
                             .Text(
                                 $"N.H. #{currenCarnet.Nh}      Vencimiento: {currenCarnet.ExpDate.Day}/{currenCarnet.ExpDate.Month}/{currenCarnet.ExpDate.Year}")
-                            .FontSize(10);
+                            .FontSize(9);
                     });
                     info.Item().Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"Ubicacion {currenCarnet.LocationNumber}")
-                            .FontSize(10);
+                            .FontSize(9);
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(10);
+                        internalRow.ConstantItem(1.5f, Unit.Centimetre).PaddingLeft(0.2f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image(currenCarnet.PicPath);
+                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(9);
                     });
                 });
                 carnetR.ConstantItem(0.8f, Unit.Centimetre).Column(c =>

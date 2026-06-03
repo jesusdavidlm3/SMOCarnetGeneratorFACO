@@ -12,8 +12,9 @@ public class Carnet
     public string LocationName { get; set; }
     public int LocationNumber { get; set; }
     public string Condition { get; set; } 
+    public string PicPath { get; set; }
     
-    public Carnet(int id, string name, int nh, DateTimeOffset expDate, string locationName, int locationNumber, string condition)
+    public Carnet(int id, string name, int nh, DateTimeOffset expDate, string locationName, int locationNumber, string condition, string picPath)
     {
         Id = id;
         Name = name;
@@ -22,5 +23,6 @@ public class Carnet
         LocationName = locationName;
         LocationNumber = locationNumber;
         Condition = condition;
+        PicPath = picPath;
     }
 }

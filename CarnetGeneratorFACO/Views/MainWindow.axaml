@@ -3,7 +3,7 @@
         xmlns:vm="using:CarnetGeneratorFACO.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="620" Width="1100" Height="620" CanResize="False"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="660" Width="1100" Height="660" CanResize="False"
         x:Class="CarnetGeneratorFACO.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/icon.ico"
@@ -84,7 +84,8 @@
             <Button
                 Content="{Binding PicStatus}"
                 Classes="Primary"
-                Margin="0 15 0 0"/>
+                Margin="0 15 0 0"
+                Command="{Binding SelectPic}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50" Margin="20">
                 <Button 
                     Content="Aceptar"
