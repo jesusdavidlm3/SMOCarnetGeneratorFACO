@@ -83,8 +83,12 @@ public class IssueCards : IDocument
                     });
                     info.Item().Row(internalRow =>
                     {
-                        internalRow.ConstantItem(1.5f, Unit.Centimetre).PaddingLeft(0.2f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image(currenCarnet.PicPath);
-                        internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(9);
+                        internalRow.RelativeItem().Height(1.8f, Unit.Centimetre).PaddingLeft(0.2f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image(currenCarnet.PicPath).FitUnproportionally();
+                        internalRow.ConstantItem(6f, Unit.Centimetre).Column(infoColumn =>
+                        {
+                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(9);
+                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Condition}").FontSize(9);
+                        });
                     });
                 });
                 carnetR.ConstantItem(0.8f, Unit.Centimetre).Column(c =>
