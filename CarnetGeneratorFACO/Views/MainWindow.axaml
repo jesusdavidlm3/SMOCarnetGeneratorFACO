@@ -32,7 +32,7 @@
             <Label Content="Fecha de vencimiento: "/>
             <!-- <shadui:DateInput Value="{Binding ExpDateInput}"/> -->
             <CalendarDatePicker
-                Text="{Binding ExpDateInput}"/>
+                SelectedDate="{Binding ExpDateInput}"/>
             <Label Content="Numero de Ubicacion: "/>
             <TextBox Text="{Binding LocationNumberInput}"/>
             <Label Content="Nombre de ubicacion: "/>

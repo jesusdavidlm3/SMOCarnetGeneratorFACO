@@ -25,7 +25,7 @@ public partial class MainWindowViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-
+    private string _NameInput { get; set; }
     public string NameInput
     {
         get => _NameInput;
@@ -38,27 +38,52 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         }
     }
-
-    private string _NameInput { get; set; }
-
+    
+    private int _IdInput { get; set; }
+    
     public int IdInput
+    {
+        get => _IdInput;
+        set
+        {
+            if (_IdInput != value)
+            {
+                _IdInput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+    private  int _NhInput { get; set; }
+
+    public int NhInput
     {
         get => _NhInput;
         set
         {
-            if (_NhInput != value)
+            if (NhInput != value)
             {
                 _NhInput = value;
                 OnPropertyChanged();
             }
         }
     }
-    private  int _NhInput { get; set; }
-    public int NhInput { get; set; }
-    public DateTimeOffset ExpDateInput { get; set; } = DateTimeOffset.Now;
+    private DateTime _ExpDateInput { get; set; } = DateTime.Now;
+
+    public DateTime ExpDateInput
+    {
+        get => _ExpDateInput;
+        set
+        {
+            if (value != _ExpDateInput)
+            {
+                _ExpDateInput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public int LocationNumberInput { get; set; }
     
-    private string _SelectedLocationName { get; set; } = "Facultad de odontologia";
+    private string _SelectedLocationName { get; set; } = "Facultad de Odontologia";
     
     public string SelectedLocationName
     {
@@ -117,7 +142,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         Addcarnet = new RelayCommand(
             execute: _ => _AddCarnet(),
-            canExecute: _ => ((CarnetsReady.Count < 6))
+            canExecute: _ => ((CarnetsReady.Count < 10) && (_NameInput != ""))
         );
         ClearCarnets = new RelayCommand(
             execute: _ => _ClearCarnets()
@@ -127,7 +152,8 @@ public partial class MainWindowViewModel : ViewModelBase
             execute: _ => _IssueCards()
         );
         SelectPic = new RelayCommand(
-            execute: _ => _SelectPic()
+            execute: _ => _SelectPic(),
+            canExecute: _ => PicStatus != "Imagen Seleccionada"
         );
     }
     
