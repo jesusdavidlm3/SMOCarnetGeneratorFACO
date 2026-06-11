@@ -3,18 +3,23 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using CarnetGeneratorFACO.Classes;
 using CarnetGeneratorFACO.Functions.PDF;
 using CarnetGeneratorFACO.Models;
 using CarnetGeneratorFACO.Services;
 using QuestPDF.Fluent;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CarnetGeneratorFACO.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
     public ObservableCollection<Carnet> CarnetsReady { get; private set; } = [];
-    private string PicPath { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
+    private partial string PicPath { get; set; } = "";
+    
     private string _PicStatus { get; set; } = "Seleccionar foto";
     public string PicStatus
     {
@@ -25,7 +30,10 @@ public partial class MainWindowViewModel : ViewModelBase
             OnPropertyChanged();
         }
     }
-    private string _NameInput { get; set; }
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
+    private partial string _NameInput { get; set; }
     public string NameInput
     {
         get => _NameInput;
@@ -39,8 +47,9 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
     
-    private int _IdInput { get; set; }
-    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
+    private partial int _IdInput { get; set; }
     public int IdInput
     {
         get => _IdInput;
@@ -53,8 +62,10 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         }
     }
-    private  int _NhInput { get; set; }
-
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
+    private partial int _NhInput { get; set; }
     public int NhInput
     {
         get => _NhInput;
@@ -133,54 +144,42 @@ public partial class MainWindowViewModel : ViewModelBase
         "Familiar"
     ];
 
-    public RelayCommand Addcarnet { get; }
-    public RelayCommand ClearCarnets { get; }
-    public RelayCommand IssueCards { get; }
-    public RelayCommand SelectPic { get; }
-    
     public MainWindowViewModel()
     {
-        Addcarnet = new RelayCommand(
-            execute: _ => _AddCarnet(),
-            canExecute: _ => ((CarnetsReady.Count < 10) && (_NameInput != ""))
-        );
-        ClearCarnets = new RelayCommand(
-            execute: _ => _ClearCarnets()
-        );
-
-        IssueCards = new RelayCommand(
-            execute: _ => _IssueCards()
-        );
-        SelectPic = new RelayCommand(
-            execute: _ => _SelectPic(),
-            canExecute: _ => PicStatus != "Imagen Seleccionada"
-        );
+        CarnetsReady.CollectionChanged += (s, e) =>
+        {
+            ClearCarnetsCommand.NotifyCanExecuteChanged();
+            IssueCardsCommand.NotifyCanExecuteChanged();
+        };
     }
     
-    private void _AddCarnet()
+    [RelayCommand(CanExecute = nameof(CanAddCarnet))]
+    private void AddCarnet()
     {
         var newCarnet = new Carnet(IdInput, NameInput, NhInput, ExpDateInput, SelectedLocationName, LocationNumberInput, Condition, PicPath);
         CarnetsReady.Add(newCarnet);
         IdInput = 0;
         NameInput = "";
-        IdInput = 0;
         NhInput = 0;
         PicPath = "";
         PicStatus = "Seleccionar foto";
     }
     
-    private void _ClearCarnets()
+    [RelayCommand(CanExecute = nameof(CanIssueCards))]
+    private void ClearCarnets()
     {
         CarnetsReady.Clear();
     }
-
-    private void _IssueCards()
+    
+    [RelayCommand(CanExecute = nameof(CanIssueCards))]
+    private void IssueCards()
     {
         var document = new IssueCards(CarnetsReady);
         document.GeneratePdfAndShow();
     }
 
-    private async Task _SelectPic()
+    [RelayCommand]
+    private async Task SelectPic()
     {
         var result = await FileDialogService.ShowSelectFileDialog();
         if (result.Count > 0)
@@ -189,4 +188,8 @@ public partial class MainWindowViewModel : ViewModelBase
             PicPath = result[0].TryGetLocalPath();   
         }
     }
+
+    private bool CanAddCarnet() => NameInput != "" && IdInput != 0 && NhInput != 0 && PicPath != "";
+
+    private bool CanIssueCards() => CarnetsReady.Count > 0;
 }

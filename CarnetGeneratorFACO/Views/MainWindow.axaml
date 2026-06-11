@@ -47,21 +47,21 @@
                 Content="{Binding PicStatus}"
                 Classes="Primary"
                 Margin="0 15 0 0"
-                Command="{Binding SelectPic}"/>
+                Command="{Binding SelectPicCommand}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50" Margin="20">
                 <Button 
                     Content="Aceptar"
                     Classes="Primary"
-                    Command="{Binding Addcarnet}"/>
+                    Command="{Binding AddCarnetCommand}"/>
                 <Button 
                     Content="Imprimir"
                     Classes="Secondary"
-                    Command="{Binding IssueCards}"/>
+                    Command="{Binding IssueCardsCommand}"/>
             </StackPanel>
             <TextBlock
                 TextAlignment="Center"
                 FontSize="12"
-                Text="Desarrollado por la unidad de sistemas de la Facultad de Odontologia de la Universidad del Zulia"/>
+                Text="Desarrollado por el departamento de T.I.C de la Facultad de Odontologia de la Universidad del Zulia"/>
         </StackPanel>
         <Border BorderBrush="WhiteSmoke" BorderThickness="2 0 0 0" Margin="0 8 0 8" Padding="0 10" >
             <StackPanel Width="400" Spacing="10">
@@ -96,10 +96,11 @@
                     </ListBox>
                 </ScrollViewer>
                 <Button
+                    Name="EmptyListButton"
                     Classes="Primary"
                     Content="Vaciar lista"
                     Width="120"
-                    Command="{Binding ClearCarnets}"/>
+                    Command="{Binding ClearCarnetsCommand}"/>
             </StackPanel>
         </Border>
     </DockPanel>
