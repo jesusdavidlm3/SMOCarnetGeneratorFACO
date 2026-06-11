@@ -1,14 +1,14 @@
-<shadui:Window xmlns="https://github.com/avaloniaui"
+<sukiUi:SukiWindow xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CarnetGeneratorFACO.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="660" Width="1100" Height="660" CanResize="False"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="690" Width="1100" Height="690" CanResize="False"
         x:Class="CarnetGeneratorFACO.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/icon.ico"
         Title="Generador de carnets SMO"
-        xmlns:shadui="clr-namespace:ShadUI;assembly=ShadUI">
+        xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -104,4 +104,4 @@
         </Border>
     </DockPanel>
 
-</shadui:Window>
+</sukiUi:SukiWindow>

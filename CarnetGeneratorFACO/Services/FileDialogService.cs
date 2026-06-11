@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using Window = ShadUI.Window;
+using Window = SukiUI.Controls.SukiWindow;
 
 namespace CarnetGeneratorFACO.Services;
 

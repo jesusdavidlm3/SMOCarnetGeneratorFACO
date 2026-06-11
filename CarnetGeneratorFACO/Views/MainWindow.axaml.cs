@@ -1,11 +1,11 @@
 // using Avalonia.Controls;
 
 using CarnetGeneratorFACO.Services;
-using ShadUI;
+using Avalonia.Controls;
 
 namespace CarnetGeneratorFACO.Views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : SukiUI.Controls.SukiWindow
 {
     public MainWindow()
     {
