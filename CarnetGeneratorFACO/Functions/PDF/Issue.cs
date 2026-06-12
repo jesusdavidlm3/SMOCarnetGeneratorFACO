@@ -55,33 +55,34 @@ public class IssueCards : IDocument
             {
                 carnetR.ConstantItem(7.7f, Unit.Centimetre).Column(info =>
                 {
-                    info.Item().Row(internalRow =>
+                    info.Item().Unconstrained().TranslateY(1.5f, Unit.Centimetre).TranslateX(4.5f, Unit.Centimetre).Width(3.1f, Unit.Centimetre).Height(3.1f, Unit.Centimetre).Image("Assets/waterlogo.png");
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.Spacing(1.5f, Unit.Centimetre);
                         internalRow.ConstantItem(3f, Unit.Centimetre).PaddingLeft(0.1f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image("Assets/luzlogo.png");
                         internalRow.ConstantItem(3f, Unit.Centimetre).PaddingLeft(1f, Unit.Centimetre).PaddingTop(0.5f, Unit.Centimetre).Image("Assets/smologo.png");
                     });
-                    info.Item().Row(internalRow =>
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Name}").FontSize(9);
                     });
-                    info.Item().Row(internalRow =>
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"C.I. {currenCarnet.Id}").FontSize(9);
                     });
-                    info.Item().Row(internalRow =>
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre)
                             .Text(
                                 $"N.H. #{currenCarnet.Nh}      Vencimiento: {currenCarnet.ExpDate.Day}/{currenCarnet.ExpDate.Month}/{currenCarnet.ExpDate.Year}")
                             .FontSize(9);
                     });
-                    info.Item().Row(internalRow =>
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.RelativeItem().PaddingLeft(0.2f, Unit.Centimetre).Text($"Ubicacion: {currenCarnet.LocationNumber}")
                             .FontSize(9);
                     });
-                    info.Item().Row(internalRow =>
+                    info.Item().ZIndex(1).Row(internalRow =>
                     {
                         internalRow.RelativeItem().Height(1.8f, Unit.Centimetre).PaddingLeft(0.2f, Unit.Centimetre).PaddingTop(0.1f, Unit.Centimetre).Image(currenCarnet.PicPath).FitUnproportionally();
                         internalRow.ConstantItem(6f, Unit.Centimetre).Column(infoColumn =>
