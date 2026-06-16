@@ -88,7 +88,7 @@ public class IssueCards : IDocument
                         internalRow.ConstantItem(6f, Unit.Centimetre).Column(infoColumn =>
                         {
                             infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(9);
-                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Condition}").FontSize(9);
+                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).PaddingRight(0.3f, Unit.Centimetre).PaddingTop(0.2f, Unit.Centimetre).Text($"{currenCarnet.Condition}").FontSize(16).FontColor("#006699").AlignEnd().ExtraBold();
                         });
                     });
                 });
