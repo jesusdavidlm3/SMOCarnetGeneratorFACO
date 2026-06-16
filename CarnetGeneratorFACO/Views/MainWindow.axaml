@@ -12,7 +12,7 @@
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
@@ -22,32 +22,54 @@
                 Text="Generador de carnets" 
                 HorizontalAlignment="Center"
                 FontSize="30"/>
+            
             <Label Content="Nombre: "/>
             <TextBox Text="{Binding NameInput, Mode=TwoWay}"/>
+            
             <Label Content="Cedula: "/>
-            <TextBox
-                Text="{Binding IdInput, Mode=TwoWay}"/>
+            <NumericUpDown
+                Value="{Binding IdInput}"
+                Increment="1"
+                Minimum="1"
+                AllowSpin="False"
+                ShowButtonSpinner="False"/>
+            
             <Label Content="N.H.: "/>
-            <TextBox  Text="{Binding NhInput}"/>
-            <Label Content="Fecha de vencimiento: "/>
-            <!-- <shadui:DateInput Value="{Binding ExpDateInput}"/> -->
+            <NumericUpDown
+                Value="{Binding NhInput}"
+                Increment="1"
+                Minimum="1"
+                AllowSpin="False"
+                ShowButtonSpinner="False"/>
+            
+            <Label Content="Fecha de vencimiento: "/>     
             <CalendarDatePicker
                 SelectedDate="{Binding ExpDateInput}"/>
+            
             <Label Content="Numero de Ubicacion: "/>
-            <TextBox Text="{Binding LocationNumberInput}"/>
+            <NumericUpDown
+                Text="{Binding LocationNumberInput}"
+                Increment="1"
+                Minimum="1"
+                AllowSpin="False"
+                ShowButtonSpinner="False"/>
+            
             <Label Content="Nombre de ubicacion: "/>
             <ComboBox
                 ItemsSource="{Binding LocationNames}"
                 SelectedItem="{Binding SelectedLocationName}"/>
+            
             <Label Content="Condicion:"/>
             <ComboBox
                 ItemsSource="{Binding Conditions}"
                 SelectedItem="{Binding Condition}"/>
+            
             <Button
                 Content="{Binding PicStatus}"
                 Classes="Primary"
                 Margin="0 15 0 0"
                 Command="{Binding SelectPicCommand}"/>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50" Margin="20">
                 <Button 
                     Content="Aceptar"
@@ -58,6 +80,7 @@
                     Classes="Secondary"
                     Command="{Binding IssueCardsCommand}"/>
             </StackPanel>
+            
             <TextBlock
                 TextAlignment="Center"
                 FontSize="12"

@@ -49,8 +49,8 @@ public partial class MainWindowViewModel : ViewModelBase
     
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
-    private partial int _IdInput { get; set; }
-    public int IdInput
+    private partial int? _IdInput { get; set; }
+    public int? IdInput
     {
         get => _IdInput;
         set
@@ -65,8 +65,8 @@ public partial class MainWindowViewModel : ViewModelBase
     
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
-    private partial int _NhInput { get; set; }
-    public int NhInput
+    private partial int? _NhInput { get; set; }
+    public int? NhInput
     {
         get => _NhInput;
         set
@@ -92,7 +92,22 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         }
     }
-    public int LocationNumberInput { get; set; }
+    
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(AddCarnetCommand))]
+    private partial int? _LocationNumberInput { get; set; }
+    public int? LocationNumberInput
+    {
+        get => _LocationNumberInput;
+        set
+        {
+            if (value != _LocationNumberInput)
+            {
+                _LocationNumberInput = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     
     private string _SelectedLocationName { get; set; } = "Facultad de Odontologia";
     
@@ -156,11 +171,12 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand(CanExecute = nameof(CanAddCarnet))]
     private void AddCarnet()
     {
-        var newCarnet = new Carnet(IdInput, NameInput, NhInput, ExpDateInput, SelectedLocationName, LocationNumberInput, Condition, PicPath);
+        var newCarnet = new Carnet(NameInput, ExpDateInput, SelectedLocationName, Condition, PicPath, IdInput, NhInput, LocationNumberInput);
         CarnetsReady.Add(newCarnet);
-        IdInput = 0;
+        IdInput = null;
         NameInput = "";
-        NhInput = 0;
+        NhInput = null;
+        LocationNumberInput = null;
         PicPath = "";
         PicStatus = "Seleccionar foto";
     }
@@ -189,7 +205,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    private bool CanAddCarnet() => NameInput != "" && IdInput != 0 && NhInput != 0 && PicPath != "";
+    private bool CanAddCarnet() => NameInput != "" && IdInput != null && NhInput != null && PicPath != "" && LocationNumberInput != null;
 
     private bool CanIssueCards() => CarnetsReady.Count > 0;
 }
