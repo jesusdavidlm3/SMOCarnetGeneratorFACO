@@ -6,6 +6,11 @@
         <Nullable>enable</Nullable>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+        <Company>Facultad de Odontologia de la Universidad del Zulia</Company>
+        <AssemblyVersion>1.0</AssemblyVersion>
+        <FileVersion>1.0</FileVersion>
+        <NeutralLanguage>es-419</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +29,7 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1"/>
         <PackageReference Include="QuestPDF" Version="2026.5.0" />
         <PackageReference Include="SukiUI" Version="7.0.1" />
+        <PackageReference Include="ZXing.Net" Version="0.16.11" />
     </ItemGroup>
 
     <ItemGroup>

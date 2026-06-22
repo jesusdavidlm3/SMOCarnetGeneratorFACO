@@ -5,6 +5,9 @@ using CarnetGeneratorFACO.Models;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using ZXing;
+using ZXing.OneD;
+using ZXing.Rendering;
 
 namespace CarnetGeneratorFACO.Functions.PDF;
 
@@ -88,7 +91,45 @@ public class IssueCards : IDocument
                         internalRow.ConstantItem(6f, Unit.Centimetre).Column(infoColumn =>
                         {
                             infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.LocationName}").FontSize(9);
-                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).Text($"{currenCarnet.Condition}").FontSize(9);
+                            infoColumn.Item().PaddingLeft(0.2f, Unit.Centimetre).PaddingRight(0.3f, Unit.Centimetre).PaddingTop(0.2f, Unit.Centimetre).Text($"{currenCarnet.Condition}").FontSize(16).FontColor("#006699").AlignEnd().ExtraBold();
+                            infoColumn.Item().Row(codes =>
+                            {
+                                codes.RelativeItem().Width(1.8f, Unit.Centimetre).Height(0.5f, Unit.Centimetre).Svg(size =>
+                                {
+                                    var content = currenCarnet.Id;
+
+                                    var writer = new Code128Writer();
+                                    var code = writer.encode(content.ToString(), BarcodeFormat.CODE_128,
+                                        (int)size.Width, (int)size.Height);
+                                    var renderer = new SvgRenderer { FontName = "Lato", FontSize = 5 };
+
+                                    return renderer.Render(code, BarcodeFormat.CODE_128, content.ToString()).Content;
+                                });
+                                
+                                codes.RelativeItem().Width(1.8f, Unit.Centimetre).Height(0.5f, Unit.Centimetre).Svg(size =>
+                                {
+                                    var content = currenCarnet.Nh;
+
+                                    var writer = new Code128Writer();
+                                    var code = writer.encode(content.ToString(), BarcodeFormat.CODE_128,
+                                        (int)size.Width, (int)size.Height);
+                                    var renderer = new SvgRenderer { FontName = "Lato", FontSize = 5 };
+
+                                    return renderer.Render(code, BarcodeFormat.CODE_128, content.ToString()).Content;
+                                });
+                                
+                                codes.RelativeItem().Width(1.8f, Unit.Centimetre).Height(0.5f, Unit.Centimetre).Svg(size =>
+                                {
+                                    var content = currenCarnet.LocationNumber;
+
+                                    var writer = new Code128Writer();
+                                    var code = writer.encode(content.ToString(), BarcodeFormat.CODE_128,
+                                        (int)size.Width, (int)size.Height);
+                                    var renderer = new SvgRenderer { FontName = "Lato", FontSize = 5 };
+
+                                    return renderer.Render(code, BarcodeFormat.CODE_128, content.ToString()).Content;
+                                });
+                            });
                         });
                     });
                 });
