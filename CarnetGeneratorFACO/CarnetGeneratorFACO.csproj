@@ -24,6 +24,7 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1"/>
         <PackageReference Include="QuestPDF" Version="2026.5.0" />
         <PackageReference Include="SukiUI" Version="7.0.1" />
+        <PackageReference Include="ZXing.Net" Version="0.16.11" />
     </ItemGroup>
 
     <ItemGroup>
