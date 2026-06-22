@@ -6,6 +6,11 @@
         <Nullable>enable</Nullable>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+        <Company>Facultad de Odontologia de la Universidad del Zulia</Company>
+        <AssemblyVersion>1.0</AssemblyVersion>
+        <FileVersion>1.0</FileVersion>
+        <NeutralLanguage>es-419</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
